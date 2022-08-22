@@ -8,7 +8,7 @@ interface Props {
 
 const KeyboardDemo = (props: Props) => (
   <div className="flex flex-col items-center">
-    <div className="max-w-[800px]">
+    <div className="text-center max-w-[800px]">
       You must arrange your fingers on the keyboard as demonstrated below.
       Please place your fingers on the keys now and practice.
     </div>
