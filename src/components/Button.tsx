@@ -1,5 +1,5 @@
 const BUTTON_BASE_CLASS =
-  "flex justify-center items-center h-[30px] px-10 disabled:bg-zinc-400 rounded border-none disabled:text-grey-400 disabled:cursor-not-allowed";
+  "flex justify-center items-center h-[30px] px-10 rounded border-none";
 
 const BUTTON_COLOR_STYLES = {
   purple: "bg-purple-300 hover:bg-purple-300/90",
@@ -10,17 +10,20 @@ const BUTTON_COLOR_STYLES = {
 
 interface Props extends React.HTMLAttributes<HTMLElement> {
   customClasses?: string;
+  disabled?: boolean;
   buttonColor?: "purple" | "green" | "blue" | "orange";
 }
 
 const Button = ({
   children,
+  disabled,
   customClasses = "",
   buttonColor = "green",
   ...htmlAttributes
 }: Props) => {
   const buttonClassName = [
     customClasses ? customClasses : null,
+    disabled ? "bg-zinc-400 hover:bg-zinc-400 text-zinc-500 cursor-not-allowed" : null,
     BUTTON_BASE_CLASS,
     BUTTON_COLOR_STYLES[buttonColor],
   ]

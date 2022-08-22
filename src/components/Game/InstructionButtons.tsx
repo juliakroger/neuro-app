@@ -27,7 +27,7 @@ const InstructionButtons = ({
     ) : null}
 
     <div className="fixed right-4 top-4">
-      {step >= stepsLength ? (
+      {step >= stepsLength - 1 ? (
         <Button
           disabled={isNextDisabled}
           onClick={() => {
