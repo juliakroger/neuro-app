@@ -8,7 +8,7 @@ const BUTTON_COLOR_STYLES = {
   orange: "bg-orange-300 hover:bg-orange-300/90",
 };
 
-interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface Props extends React.HTMLAttributes<HTMLElement> {
   customClasses?: string;
   buttonColor?: "purple" | "green" | "blue" | "orange";
 }
@@ -28,9 +28,9 @@ const Button = ({
     .join(" ");
 
   return (
-    <button className={buttonClassName} {...htmlAttributes}>
+    <div className={buttonClassName} {...htmlAttributes}>
       {children}
-    </button>
+    </div>
   );
 };
 
