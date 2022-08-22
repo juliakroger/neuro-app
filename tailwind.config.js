@@ -58,6 +58,12 @@ module.exports = {
         // #FF5440
         // },
       },
+      backgroundImage: {
+        "purple-pattern":
+          "url('src/images/wave-background-purple.png'), linear-gradient(180deg, #51479e 0%, #282265 100%)",
+        "blue-pattern": "linear-gradient(180deg, #5ebccb 0%, #38719e 100%)",
+        "orange-pattern": "linear-gradient(180deg, #f48b5d 0%, #e97c75 100%)",
+      },
     },
   },
   plugins: [],
