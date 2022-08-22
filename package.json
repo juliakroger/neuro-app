@@ -1,0 +1,32 @@
+{
+  "name": "neuro-app-labs",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "start": "vite --port 3000",
+    "build": "tsc && vite build && npm run file",
+    "file": "cp -f _redirects dist/_redirects",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "axios": "^0.27.2",
+    "moment": "^2.29.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.3.0",
+    "recharts": "^2.1.13",
+    "tailwindcss": "^3.1.8"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.17",
+    "@types/react-dom": "^18.0.6",
+    "@typescript-eslint/eslint-plugin": "^5.34.0",
+    "@typescript-eslint/parser": "^5.34.0",
+    "@vitejs/plugin-react": "^2.0.1",
+    "autoprefixer": "^10.4.8",
+    "typescript": "^4.7.4",
+    "vite": "^3.0.9"
+  },
+  "author": "",
+  "license": "ISC"
+}
