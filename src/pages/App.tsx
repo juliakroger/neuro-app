@@ -33,26 +33,24 @@ const App = () => {
       className={`min-h-screen bg-fixed bg-contain bg-no-repeat bg-center ${background}`}
     >
       <BrowserRouter>
-        <div>
-          <Routes>
-            <Route path="/" element={<Outlet />}>
-              <Route
-                index
-                element={
-                  <Game
-                    gameConfig={gameConfig}
-                    gameStarted={gameStarted}
-                    gameEnded={gameEnded}
-                    resetTest={resetTest}
-                    endGame={endGame}
-                    startGame={startGame}
-                  />
-                }
-              />
-              <Route path="past-games" element={<PastGames />} />
-            </Route>
-          </Routes>
-        </div>
+        <Routes>
+          <Route path="/" element={<Outlet />}>
+            <Route
+              index
+              element={
+                <Game
+                  gameConfig={gameConfig}
+                  gameStarted={gameStarted}
+                  gameEnded={gameEnded}
+                  resetTest={resetTest}
+                  endGame={endGame}
+                  startGame={startGame}
+                />
+              }
+            />
+            <Route path="past-games" element={<PastGames />} />
+          </Route>
+        </Routes>
       </BrowserRouter>
       <PastGames />
     </div>

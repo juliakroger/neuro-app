@@ -18,11 +18,11 @@ const gameConfig = {
   gameColor: "", // Options: blue, orange and purple (purple is the default)
   feedbackColor: "", // Options: yellow, blue and orange (orange is the default)
   roundsAmount: 10,
-  triesAmount: 2,
+  triesAmount: 0,
   timeToRespond: 2000, // Timeout to respond, if set to 0 the letter gets "stuck" until keyboard response
   timePerRound: 800, // Time between responses
   boxesAmount: 4, // Number of boxes
-  letterHint: false, // Turn it on if the letter is supposed to be shown on the box
+  letterHint: true, // Turn it on if the letter is supposed to be shown on the box
   letterPerBox: [
     { round: 1, letter: "N", box: 3 },
     { round: 2, letter: "V", box: 2 },
