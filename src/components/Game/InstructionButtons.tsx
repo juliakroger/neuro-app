@@ -24,7 +24,13 @@ const InstructionButtons = ({
           Back
         </Button>
       </div>
-    ) : null}
+    ) : (
+      <div className="fixed left-4 top-4">
+        <Button buttonColor="blue" onClick={startGame}>
+          Skip Tutorial
+        </Button>
+      </div>
+    )}
 
     <div className="fixed right-4 top-4">
       {step >= stepsLength - 1 ? (
