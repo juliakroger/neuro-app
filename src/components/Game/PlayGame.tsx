@@ -1,5 +1,5 @@
 import { GameConfigProps } from "@/utils/gameConfig";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Box from "./Box";
 
 interface Props {
@@ -7,16 +7,25 @@ interface Props {
   endGame: () => void;
 }
 
+interface TrialAnalysisProps {
+  round: number;
+  gameLetter: string;
+  responses?: {
+    currentCountDown: number;
+    pressedKey: string;
+  }[];
+}
+
 const PlayGame = ({ gameConfig, endGame }: Props) => {
   const [round, setRound] = useState(0);
-  const [lightBox, setLightBox] = useState(null);
+  const [lightBox, setLightBox] = useState<null | number>(null);
   const [letter, setLetter] = useState("");
-  const [trialAnalysis, setTrialAnalysis] = useState([]);
+  const [trialAnalysis, setTrialAnalysis] = useState<TrialAnalysisProps[]>([]);
   const [responseCountDown, setResponseCountDown] = useState(0);
   const [jumpNext, setJumpNext] = useState(0);
   const [gameName, setGameName] = useState("");
 
-  const identifyPressKey = ({ key }) => {
+  const identifyPressKey = ({ key }: { key: string }) => {
     const pressedKey = key.toUpperCase();
 
     let currentCountDown = 0;
@@ -144,7 +153,7 @@ const PlayGame = ({ gameConfig, endGame }: Props) => {
       const nextNumber = gameConfig.letterPerBox[round - 1].box - 1;
       const nextLetter = gameConfig.letterPerBox[round - 1].letter;
 
-      setTrialAnalysis((prev: []) => [
+      setTrialAnalysis((prev: TrialAnalysisProps[]) => [
         ...prev,
         { round, gameLetter: nextLetter },
       ]);
