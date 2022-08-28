@@ -7,7 +7,7 @@ interface Props {
   endGame: () => void;
 }
 
-interface TrialAnalysisProps {
+export interface TrialAnalysisProps {
   round: number;
   gameLetter: string;
   responses?: {
