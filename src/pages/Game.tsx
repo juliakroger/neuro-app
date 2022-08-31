@@ -1,4 +1,4 @@
-import GameEnd from "@/components/Game/GameEnd";
+import GameEnd from "@/components/PastGames/GameEnd";
 import GameInstructions from "@/components/Game/GameInstructions";
 import PlayGame from "@/components/Game/PlayGame";
 
