@@ -36,35 +36,41 @@ const ExpandableResults = ({
       : "bg-purple-500"
   }`;
 
-  const { totalCorrect, totalIncorrect, totalTime, totalRounds } =
-    gameResults?.reduce(
-      (acc, game) => {
-        let isAnswerRight = false;
-        let maxTime = 0;
-        game?.responses?.map(({ pressedKey, currentCountDown }) => {
-          maxTime = currentCountDown;
-          if (
-            pressedKey === game.gameLetter &&
-            currentCountDown <= timeToRespond
-          ) {
-            isAnswerRight = true;
-          }
-        });
-        if (isAnswerRight) {
-          acc.totalCorrect += 1;
-        } else {
-          acc.totalIncorrect += 1;
+  const results = gameResults?.reduce(
+    (acc, game) => {
+      let isAnswerRight = false;
+      let maxTime = 0;
+      game?.responses?.map(({ pressedKey, currentCountDown }) => {
+        maxTime = currentCountDown;
+        if (
+          pressedKey === game.gameLetter &&
+          currentCountDown <= timeToRespond
+        ) {
+          isAnswerRight = true;
         }
-        acc.totalTime += maxTime;
-        return acc;
-      },
-      {
-        totalCorrect: 0,
-        totalIncorrect: 0,
-        totalTime: 0,
-        totalRounds: gameResults.length,
+      });
+      if (isAnswerRight) {
+        acc.totalCorrect += 1;
+      } else {
+        acc.totalIncorrect += 1;
       }
-    );
+      acc.totalTime += maxTime;
+      return acc;
+    },
+    {
+      totalCorrect: 0,
+      totalIncorrect: 0,
+      totalTime: 0,
+      totalRounds: gameResults.length,
+    }
+  );
+
+  const {
+    totalCorrect = 0,
+    totalIncorrect = 0,
+    totalTime = 0,
+    totalRounds = 0,
+  } = results || {};
 
   return (
     <div className={`mt-4 p-4 rounded-xl ${background}`}>
@@ -94,56 +100,66 @@ const ExpandableResults = ({
               </tr>
             </thead>
             <tbody>
-              {gameResults?.map(({ round, gameLetter, responses }: any) => {
-                let rightAnswer = 0;
+              {gameResults?.map(
+                ({ round, gameLetter, responses }: TrialAnalysisProps) => {
+                  let rightAnswer = 0;
 
-                const className = `${
-                  gameColor === "blue"
-                    ? "bg-blue-400 odd:bg-blue-600"
-                    : gameColor === "orange"
-                    ? "bg-orange-100 odd:bg-orange-200"
-                    : "bg-purple-400 odd:bg-purple-200"
-                }`;
+                  const className = `${
+                    gameColor === "blue"
+                      ? "bg-blue-400 odd:bg-blue-600"
+                      : gameColor === "orange"
+                      ? "bg-orange-100 odd:bg-orange-200"
+                      : "bg-purple-400 odd:bg-purple-200"
+                  }`;
 
-                return (
-                  <tr className={className}>
-                    <th className="p-2.5">{round} round</th>
-                    <th className="p-2.5">{gameLetter}</th>
-                    <th className="p-2.5">
-                      {responses?.map((response, i) => {
-                        const { pressedKey, currentCountDown } = response;
-                        const isAnswerRight = pressedKey === gameLetter;
-                        if (currentCountDown <= timeToRespond) {
-                          if (isAnswerRight) {
-                            rightAnswer = 1;
+                  return (
+                    <tr className={className}>
+                      <th className="p-2.5">{round} round</th>
+                      <th className="p-2.5">{gameLetter}</th>
+                      <th className="p-2.5">
+                        {responses?.map(
+                          (
+                            response: {
+                              currentCountDown: number;
+                              pressedKey: string;
+                            },
+                            i
+                          ) => {
+                            const { pressedKey, currentCountDown } = response;
+                            const isAnswerRight = pressedKey === gameLetter;
+                            if (currentCountDown <= timeToRespond) {
+                              if (isAnswerRight) {
+                                rightAnswer = 1;
+                              }
+                              if (isAnswerRight && i > 0) {
+                                rightAnswer = 2;
+                              }
+                            }
+                            return (
+                              <div className="answer-row">
+                                {`Pressed letter ${pressedKey} in ${
+                                  currentCountDown / 1000
+                                }s`}
+                              </div>
+                            );
                           }
-                          if (isAnswerRight && i > 0) {
-                            rightAnswer = 2;
-                          }
-                        }
-                        return (
-                          <div className="answer-row">
-                            {`Pressed letter ${pressedKey} in ${
-                              currentCountDown / 1000
-                            }s`}
-                          </div>
-                        );
-                      })}
-                    </th>
-                    <th className="flex items-center pt-3">
-                      {rightAnswer > 0 ? (
-                        rightAnswer > 1 ? (
-                          <CheckYellow />
+                        )}
+                      </th>
+                      <th className="flex items-center pt-3">
+                        {rightAnswer > 0 ? (
+                          rightAnswer > 1 ? (
+                            <CheckYellow />
+                          ) : (
+                            <Check />
+                          )
                         ) : (
-                          <Check />
-                        )
-                      ) : (
-                        <Cancel />
-                      )}
-                    </th>
-                  </tr>
-                );
-              })}
+                          <Cancel />
+                        )}
+                      </th>
+                    </tr>
+                  );
+                }
+              )}
             </tbody>
           </table>
 
