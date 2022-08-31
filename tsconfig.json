@@ -21,7 +21,7 @@
       "@/components/*": ["./components/*"],
       "@/styles/*": ["./styles/*"],
       "@/utils/*": ["./utils/*"],
-      "@/icons/*": ["./assets/icons/*"],
+      "@/assets/*": ["./assets/*"],
     }
   },
   "include": ["src"],
