@@ -48,11 +48,13 @@ const App = () => {
                 />
               }
             />
-            <Route path="past-games" element={<PastGames />} />
+            <Route
+              path="past-games"
+              element={<PastGames gameConfig={gameConfig} />}
+            />
           </Route>
         </Routes>
       </BrowserRouter>
-      <PastGames />
     </div>
   );
 };
