@@ -3,7 +3,7 @@ import { GameConfigProps } from "@/utils/gameConfig";
 import { TrialAnalysisProps } from "@/components/Game/PlayGame";
 import Button from "@/components/Button";
 
-import GameResultChart from "./GameResultChart";
+// import GameResultChart from "./GameResultChart";
 import GameResultTable from "./GameResultTable";
 
 interface Props {
@@ -57,11 +57,11 @@ const GameEnd = ({ gameConfig, resetTest }: Props) => {
       </div>
 
       <div className="flex flex-col mt-10 w-full max-w-[900px]">
-        <GameResultChart
+        {/* <GameResultChart
           gameResults={finishedGame?.gameResults}
           timeToRespond={gameConfig.timeToRespond}
           background={background}
-        />
+        /> */}
 
         <GameResultTable
           gameResults={finishedGame?.gameResults || []}
