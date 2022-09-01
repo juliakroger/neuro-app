@@ -1,4 +1,5 @@
 import { useState } from "react";
+import moment from "moment";
 import { TrialAnalysisProps } from "@/components/Game/PlayGame";
 
 import CheckYellow from "@/assets/icons/CheckYellow";
@@ -10,6 +11,7 @@ interface Props {
   timeToRespond: number;
   background?: string;
   gameColor?: string;
+  id?: string;
 }
 
 const ExpandableResults = ({
@@ -17,8 +19,9 @@ const ExpandableResults = ({
   timeToRespond,
   background,
   gameColor,
+  id,
 }: Props) => {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
 
   const tableBodyClassName = `p-2.5 ${
     gameColor === "blue"
@@ -72,10 +75,13 @@ const ExpandableResults = ({
     totalRounds = 0,
   } = results || {};
 
+  const date = id && moment(parseInt(id.split("game-")[1])).format("LLLL");
+
   return (
     <div className={`mt-4 p-4 rounded-xl ${background}`}>
       <div className="flex justify-between">
         <div>Session Details</div>
+        <div>{date}</div>
         <button
           type="button"
           className="text-sm underline"

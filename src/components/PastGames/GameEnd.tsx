@@ -20,6 +20,7 @@ const GameEnd = ({ gameConfig, resetTest }: Props) => {
   const [finishedGame, setFinishedGame] = useState<null | GameResultProps>(
     null
   );
+  const [lastGameId, setLastGameId] = useState("");
 
   const getConfig = () => {
     const game: GameResultProps = {
@@ -31,6 +32,7 @@ const GameEnd = ({ gameConfig, resetTest }: Props) => {
       localStorage.getItem("niji-game-results-list") || ""
     );
     const lastGame = localStorage.getItem(gameList?.pop() || {});
+    setLastGameId(lastGame || "");
     game.gameResults = lastGame ? JSON.parse(lastGame) : [];
 
     setFinishedGame(game);
@@ -66,6 +68,7 @@ const GameEnd = ({ gameConfig, resetTest }: Props) => {
           timeToRespond={gameConfig.timeToRespond}
           background={background}
           gameColor={gameConfig.gameColor}
+          id={lastGameId}
         />
       </div>
 
