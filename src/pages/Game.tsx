@@ -1,6 +1,7 @@
 import GameEnd from "@/components/PastGames/GameEnd";
 import GameInstructions from "@/components/Game/GameInstructions";
 import PlayGame from "@/components/Game/PlayGame";
+import { GameConfigProps } from "@/utils/gameConfig";
 
 interface Props {
   gameStarted: boolean;
@@ -8,7 +9,7 @@ interface Props {
   resetTest: () => void;
   endGame: () => void;
   startGame: () => void;
-  gameConfig: any;
+  gameConfig: GameConfigProps;
 }
 
 const Game = ({
