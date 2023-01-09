@@ -1,3 +1,3 @@
 # Neuro App
 
-https://neuro-niji.netlify.app/
+https://neuro-assign.netlify.app/
